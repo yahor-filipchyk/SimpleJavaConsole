@@ -15,15 +15,27 @@ import java.util.logging.Logger;
 public class Console {
     
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            
+         
+    /**
+     * Writes string to stdout.
+     * @param str String to be written to stdout.
+     */
     public static void write(String str) {
         System.out.print(str);
     }
     
+    /**
+     * Writes line to stdout.
+     * @param str String to be written to stdout.
+     */
     public static void writeLine(String str) {
         System.out.println(str);
     }
     
+    /**
+     * Read one line from stdin.
+     * @return String read from stdin.
+     */
     public static String readLine() {
         String line = "";
         try {
@@ -34,6 +46,28 @@ public class Console {
         return line;
     }
     
+    /**
+     * Reads input data after the message.
+     * @param message String to be written to stdout before the input.
+     * @return String read from stdin after the printed message.
+     */
+    public static String read(String message) {
+        write(message);
+        String line;
+        try {
+            line = reader.readLine();
+            String parts[] = line.split(message);
+            return parts[0];
+        } catch (IOException ex) {
+            Logger.getLogger(Console.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
+    }
+    
+    /**
+     * Reads one character from stdin.
+     * @return Code of read character. -1 if nothing read.
+     */
     public static int read() {
         int readed = -1;
         try {
